@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import Pomodoro from "./pages/Pomodoro";
 import Todo from "./pages/Todo";
 const Notes = lazy(() => import("./pages/Notes"));
@@ -16,6 +16,7 @@ export default function App() {
     { id: "memory", label: "Memory" },
     { id: "about", label: "About" },
   ];
+
 
   return (
     <div className="min-h-screen bg-[#f2faf7] text-gray-800 flex flex-col items-center p-6 space-y-6">
