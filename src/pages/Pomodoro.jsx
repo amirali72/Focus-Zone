@@ -69,6 +69,20 @@ const Pomodoro = () => {
     localStorage.setItem("completeCount", completeCount);
   }, [completeCount]);
 
+  useEffect(() => {
+    if (!hasStarted) return; 
+
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [hasStarted]);
+
   return (
     <div className="max-w-2xl mx-auto pb-4">
       {/* Session + Round */}
