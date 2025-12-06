@@ -7,6 +7,8 @@ const Weather = () => {
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState("");
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+  
 
   function showLocation(position) {
     setLocation(position);
@@ -20,7 +22,7 @@ const Weather = () => {
     setLoading(true);
     try {
       const data = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=ada6b966c6de4196b3e140425232301&q=${inputVal}&aqi=no`
+        `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${inputVal}&aqi=no`
       );
       const json = await data.json();
       setWeather(json);
@@ -36,7 +38,7 @@ const Weather = () => {
   const getWeatherAuto = async () => {
     if (location) {
       const data = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=ada6b966c6de4196b3e140425232301&q=${location.coords?.latitude},${location.coords.longitude}&aqi=no`
+        `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location.coords?.latitude},${location.coords.longitude}&aqi=no`
       );
       const json = await data.json();
       setWeather(json);
