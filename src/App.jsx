@@ -34,7 +34,7 @@ export default function App() {
             className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200
               ${
                 active === tab.id
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-teal-600 text-white"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
           >
@@ -43,7 +43,7 @@ export default function App() {
         ))}
       </div>
 
-      <div className="w-full max-w-3xl bg-white shadow-md rounded-2xl p-6 border border-gray-200">
+      <div className="w-full max-h-screen h- max-w-3xl bg-white shadow-md rounded-2xl p-6 border border-gray-200">
         {active === "todo" && <Todo />}
         <Suspense
           fallback={

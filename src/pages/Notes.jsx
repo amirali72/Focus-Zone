@@ -86,7 +86,7 @@ const Notes = () => {
                 setInputText("");
                 setInputTitle("");
               }}
-              className="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm"
+              className="px-3 py-1 bg-teal-600 hover:bg-emerald-700 text-white rounded-lg text-sm"
             >
               Add
             </button>
@@ -135,7 +135,7 @@ const Notes = () => {
             />
             <button
               onClick={saveNote}
-              className="px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg"
+              className="px-4 bg-teal-600 hover:bg-emerald-700 text-white rounded-lg"
             >
               Save
             </button>
