@@ -7,6 +7,7 @@ const Notes = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputText, setInputText] = useState("");
   const [selectedNoteId, setSelectedNoteID] = useState(null);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const showNotes = (id) => {
     setSelectedNoteID(id);
@@ -61,10 +62,13 @@ const Notes = () => {
       const newData = JSON.parse(data);
       setNotes(newData);
     }
+    setIsFirstRender(false);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
+    if (!isFirstRender) {
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
   }, [notes]);
 
   return (
@@ -75,9 +79,7 @@ const Notes = () => {
       </p>
 
       <div className="flex flex-col md:flex-row gap-6">
-
         <div className="w-full md:w-1/3 bg-emerald-50 border border-emerald-100 p-4 rounded-xl shadow-sm">
-
           <div className="flex justify-between items-center mb-4">
             <h2 className="font-semibold text-gray-700">All Notes</h2>
             <button
@@ -124,7 +126,6 @@ const Notes = () => {
         </div>
 
         <div className="w-full md:w-2/3 bg-emerald-50 border border-emerald-100 p-4 rounded-xl shadow-sm">
-
           <div className="flex gap-3 mb-3">
             <input
               type="text"
@@ -141,7 +142,6 @@ const Notes = () => {
             </button>
           </div>
 
-          
           <textarea
             placeholder="Start writing your note..."
             value={inputText}

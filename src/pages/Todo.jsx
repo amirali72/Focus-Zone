@@ -7,6 +7,7 @@ const Todo = () => {
   const [filter, setFilter] = useState("all");
   const [editID, setEditID] = useState(null);
   const [editVal, setEditVal] = useState("");
+  const [isFirstRender, setIsFirstRender] = useState(true); 
 
   const addTodo = () => {
     if (!inputVal) return;
@@ -58,11 +59,14 @@ const Todo = () => {
       const todoData = JSON.parse(data);
       setTodo(todoData);
     }
+    setIsFirstRender(false); 
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todo));
-  }, [todo]);
+    if (!isFirstRender) { 
+      localStorage.setItem("todos", JSON.stringify(todo));
+    }
+  }, [todo, isFirstRender]);
 
   const remainingTasks = todo.filter((t) => !t.completed).length;
 
