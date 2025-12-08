@@ -8,7 +8,6 @@ const Weather = () => {
   const [location, setLocation] = useState(null);
   const [error, setError] = useState("");
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-  
 
   function showLocation(position) {
     setLocation(position);
@@ -54,28 +53,28 @@ const Weather = () => {
   }, [location]);
 
   return (
-    <div className="max-h-9/12 bg-linear-to-br from-green-100 to-teal-200 flex items-center justify-center p-6 rounded-xl">
-      
-      <div className="w-full max-w-lg bg-white/80 backdrop-blur-md shadow-lg rounded-2xl p-6 space-y-6">
+    <div className="bg-linear-to-br from-green-100 to-teal-200 flex items-center justify-center p-4 rounded-xl">
+
+      <div className="w-full max-w-md bg-white/85 backdrop-blur-md shadow-lg rounded-xl p-4 space-y-4">
 
         {/* Input Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
 
             <input
               type="text"
-              placeholder="Enter city name"
+              placeholder="Enter city"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && getWeather()}
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-teal-500 outline-none"
+              className="w-full pl-9 pr-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 outline-none text-sm"
             />
           </div>
 
           <button
             onClick={getWeather}
-            className="px-5 py-3 bg-teal-600 text-white font-medium rounded-xl shadow hover:bg-teal-800 transition"
+            className="px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg shadow hover:bg-teal-700 transition"
           >
             Search
           </button>
@@ -83,60 +82,60 @@ const Weather = () => {
 
         {/* Loading */}
         {loading ? (
-          <div className="flex items-center justify-center h-40">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+          <div className="flex items-center justify-center h-32">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-teal-500"></div>
           </div>
         ) : !weather ? (
-          <h1 className="text-center text-gray-600 text-lg">
-            Search weather of any location
+          <h1 className="text-center text-gray-600 text-sm">
+            Search weather of any city
           </h1>
         ) : (
           <>
             {/* Location Info */}
             <div className="text-center">
-              <div className="flex justify-center items-center gap-2 text-gray-700">
-                <MapPin size={20} />
-                <h2 className="text-xl font-semibold">
+              <div className="flex justify-center items-center gap-1 text-gray-700">
+                <MapPin size={18} />
+                <h2 className="text-lg font-semibold">
                   {weather?.location?.name}, {weather?.location?.region}
                 </h2>
               </div>
             </div>
 
             {/* Temp + Icon */}
-            <div className="flex flex-col items-center gap-2">
-              <h1 className="text-5xl font-bold text-teal-600 flex items-center gap-2">
-                <Thermometer size={40} />
+            <div className="flex flex-col items-center gap-1">
+              <h1 className="text-4xl font-bold text-teal-600 flex items-center gap-1">
+                <Thermometer size={30} />
                 {weather?.current?.temp_c}°C
               </h1>
               <img
                 src={weather?.current?.condition?.icon}
                 alt="condition"
-                className="w-20 h-20"
+                className="w-16 h-16"
               />
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-sm">
                 {weather?.current?.condition?.text}
               </p>
             </div>
 
-            {/* Weather Details */}
-            <div className="grid grid-cols-3 gap-4 text-gray-700 pt-6">
+            {/* Details */}
+            <div className="grid grid-cols-3 gap-3 text-gray-700 pt-3">
 
-              <div className="flex flex-col items-center bg-white rounded-xl p-4 shadow">
-                <CloudRain size={28} className="text-teal-500" />
-                <p className="font-medium">{weather?.current?.precip_mm} mm</p>
-                <span className="text-sm text-gray-500">Precipitation</span>
+              <div className="flex flex-col items-center bg-white rounded-lg p-3 shadow">
+                <CloudRain size={24} className="text-teal-500" />
+                <p className="font-medium text-sm">{weather?.current?.precip_mm} mm</p>
+                <span className="text-xs text-gray-500">Rain</span>
               </div>
 
-              <div className="flex flex-col items-center bg-white rounded-xl p-4 shadow">
-                <Wind size={28} className="text-teal-500" />
-                <p className="font-medium">{weather?.current?.wind_kph} kph</p>
-                <span className="text-sm text-gray-500">Wind Speed</span>
+              <div className="flex flex-col items-center bg-white rounded-lg p-3 shadow">
+                <Wind size={24} className="text-teal-500" />
+                <p className="font-medium text-sm">{weather?.current?.wind_kph} kph</p>
+                <span className="text-xs text-gray-500">Wind</span>
               </div>
 
-              <div className="flex flex-col items-center bg-white rounded-xl p-4 shadow">
-                <Droplets size={28} className="text-teal-500"/>
-                <p className="font-medium">{weather?.current?.humidity}%</p>
-                <span className="text-sm text-gray-500">Humidity</span>
+              <div className="flex flex-col items-center bg-white rounded-lg p-3 shadow">
+                <Droplets size={24} className="text-teal-500" />
+                <p className="font-medium text-sm">{weather?.current?.humidity}%</p>
+                <span className="text-xs text-gray-500">Humidity</span>
               </div>
             </div>
           </>

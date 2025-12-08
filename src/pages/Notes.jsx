@@ -69,7 +69,7 @@ const Notes = () => {
     if (!isFirstRender) {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
-  }, [notes]);
+  }, [notes, isFirstRender]);
 
   return (
     <div className="max-w-6xl mx-auto p-6">
