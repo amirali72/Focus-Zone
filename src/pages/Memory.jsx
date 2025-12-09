@@ -8,10 +8,12 @@
     const [hasWon, setHasWon] = useState(false);
     const [showFlipText, setShowFlipText] = useState(false);
     const [moves, setMoves] = useState(0);
+    const [wonCards, setWonCards] = useState([]);
 
     const handleOnClick = (id) => {
       if (flippedCards.length === 2) return;
       if (flippedCards.includes(id)) return;
+      if (wonCards.includes(id)) return;
 
       setMoves(moves + 1);
 
@@ -34,6 +36,7 @@
         if (firstCard.text === secondCard.text) {
           console.log("Match");
           setFlippedCards([]);
+          setWonCards([...wonCards,firstCard.id,secondCard.id]);
           const checkWin = memoryCards.every((cards) => cards.isFlipped === true);
           checkWin && setHasWon(true);
         } else {
