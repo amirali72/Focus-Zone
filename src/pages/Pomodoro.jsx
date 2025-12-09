@@ -86,12 +86,12 @@ const Pomodoro = () => {
   return (
     <div className="max-w-2xl mx-auto pb-4">
       {/* Session + Round */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="px-4 py-1.5 rounded-md bg-gray-100 text-gray-700 text-sm font-medium">
+      <div className="flex justify-between items-center mb-6 sm:mb-8">
+        <div className="px-3 sm:px-4 py-1.5 rounded-md bg-gray-100 text-gray-700 text-xs sm:text-sm font-medium">
           {hasStarted ? session : "Idle"}
         </div>
 
-        <div className="flex items-center gap-2 text-gray-500 text-sm">
+        <div className="flex items-center gap-2 text-gray-500 text-xs sm:text-sm">
           {hasStarted && (
             <>
               <span>
@@ -113,10 +113,10 @@ const Pomodoro = () => {
       </div>
 
       {/* Timer + Right side */}
-      <div className="flex gap-12 items-center">
+      <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 items-center">
         {/* Timer */}
-        <div className="flex items-center justify-center w-44 h-44 rounded-full border-8 border-teal-500 bg-white shrink-0">
-          <h1 className="text-5xl font-bold text-gray-800">
+        <div className="flex items-center justify-center w-36 h-36 sm:w-44 sm:h-44 rounded-full border-8 border-teal-500 bg-white shrink-0">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-800">
             {hasStarted
               ? `${minutes}:${seconds.toString().padStart(2, "0")}`
               : "00:00"}
@@ -124,8 +124,8 @@ const Pomodoro = () => {
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-col flex-1">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+        <div className="flex flex-col flex-1 text-center sm:text-left">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">
             {hasStarted
               ? session === "Work Session"
                 ? "Deep work in progress"
@@ -135,7 +135,7 @@ const Pomodoro = () => {
               : "Ready to focus?"}
           </h2>
 
-          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+          <p className="text-gray-600 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">
             {hasStarted
               ? session === "Work Session"
                 ? "Stay focused for this 25-minute block, then take a short break."
@@ -146,10 +146,10 @@ const Pomodoro = () => {
           </p>
 
           {/* Buttons */}
-          <div className="flex gap-3 mb-6">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6">
             <button
               onClick={startTimer}
-              className="px-6 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition"
+              className="px-5 sm:px-6 py-2 bg-teal-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-teal-700 transition"
             >
               Start
             </button>
@@ -158,14 +158,14 @@ const Pomodoro = () => {
               <>
                 <button
                   onClick={pauseTimer}
-                  className="px-6 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 transition"
+                  className="px-5 sm:px-6 py-2 bg-white border border-gray-300 text-xs sm:text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 transition"
                 >
                   Pause
                 </button>
 
                 <button
                   onClick={resetTimer}
-                  className="px-6 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 transition"
+                  className="px-5 sm:px-6 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-800 transition"
                 >
                   Reset
                 </button>
@@ -173,9 +173,9 @@ const Pomodoro = () => {
             )}
           </div>
 
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 text-xs sm:text-sm">
             Completed Pomodoros :
-            <span className="font-semibold text-gray-800">{completeCount}</span>
+            <span className="font-semibold text-gray-800"> {completeCount}</span>
           </p>
         </div>
       </div>

@@ -71,38 +71,38 @@ const Todo = () => {
   const remainingTasks = todo.filter((t) => !t.completed).length;
 
   return (
-    <div className="max-w-2xl mx-auto p-8">
+    <div className="max-w-2xl mx-auto p-4 sm:p-8">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Todo</h1>
-        <p className="text-gray-600 text-sm">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Todo</h1>
+        <p className="text-gray-600 text-xs sm:text-sm">
           Plan your focus blocks with a lightweight task list.
         </p>
       </div>
 
       {/* Input Section */}
-      <div className="flex gap-3 mb-6">
+      <div className="flex gap-2 sm:gap-3 mb-4 sm:mb-6">
         <input
           type="text"
           placeholder="Add a task and press Enter..."
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addTodo()}
-          className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
+          className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-xs sm:text-sm"
         />
         <button
           onClick={addTodo}
-          className="px-6 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition"
+          className="px-4 sm:px-6 py-2 sm:py-2.5 bg-teal-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-teal-700 transition"
         >
           Add
         </button>
       </div>
 
       {/* Filter Buttons */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-4 sm:mb-6">
         <button
           onClick={() => setFilter("all")}
-          className={`px-4 py-1.5 text-sm font-medium rounded-lg transition ${
+          className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition ${
             filter === "all"
               ? "bg-teal-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -112,7 +112,7 @@ const Todo = () => {
         </button>
         <button
           onClick={() => setFilter("active")}
-          className={`px-4 py-1.5 text-sm font-medium rounded-lg transition ${
+          className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition ${
             filter === "active"
               ? "bg-teal-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -122,7 +122,7 @@ const Todo = () => {
         </button>
         <button
           onClick={() => setFilter("completed")}
-          className={`px-4 py-1.5 text-sm font-medium rounded-lg transition ${
+          className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition ${
             filter === "completed"
               ? "bg-teal-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -138,71 +138,71 @@ const Todo = () => {
           return todos.id !== editID ? (
             <div
               key={todos.id}
-              className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition group"
+              className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition group"
             >
               <input
                 type="checkbox"
                 checked={todos.completed}
                 onChange={() => completeTodo(todos.id)}
-                className="w-5 h-5 rounded border-gray-300 text-teal-600 focus:ring-2 focus:ring-teal-500 cursor-pointer"
+                className="w-4 h-4 sm:w-5 sm:h-5 rounded border-gray-300 text-teal-600 focus:ring-2 focus:ring-teal-500 cursor-pointer shrink-0"
               />
               <span
-                className={`flex-1 text-gray-800 ${
+                className={`flex-1 text-sm sm:text-base text-gray-800 wrap-break-word ${
                   todos.completed ? "line-through text-gray-400" : ""
                 }`}
               >
                 {todos.text}
               </span>
-              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex gap-1 sm:gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity shrink-0">
                 <button
                   onClick={() => {
                     setEditID(todos.id);
                     setEditVal(todos.text);
                   }}
-                  className="p-1.5 text-gray-500 hover:text-teal-600 hover:bg-teal-50 rounded transition"
+                  className="p-1 sm:p-1.5 text-gray-500 hover:text-teal-600 hover:bg-teal-50 rounded transition"
                   title="Edit"
                 >
-                  <Pencil size={16} />
+                  <Pencil size={14} className="sm:w-4 sm:h-4" />
                 </button>
                 <button
                   onClick={() => deleteTodo(todos.id)}
-                  className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition"
+                  className="p-1 sm:p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition"
                   title="Delete"
                 >
-                  <Trash2 size={16} />
+                  <Trash2 size={14} className="sm:w-4 sm:h-4" />
                 </button>
               </div>
             </div>
           ) : (
             <div
               key={todos.id}
-              className="flex items-center gap-3 p-3 bg-teal-50 border-2 border-teal-500 rounded-lg"
+              className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-teal-50 border-2 border-teal-500 rounded-lg"
             >
               <input
                 type="text"
                 value={editVal}
                 onChange={(e) => setEditVal(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && saveEdit(todos.id)}
-                className="flex-1 px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
+                className="flex-1 px-2 sm:px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-xs sm:text-sm"
                 autoFocus
               />
-              <div className="flex gap-2">
+              <div className="flex gap-1 sm:gap-2 shrink-0">
                 <button
                   onClick={() => saveEdit(todos.id)}
-                  className="p-1.5 text-white bg-teal-600 hover:bg-teal-700 rounded transition"
+                  className="p-1 sm:p-1.5 text-white bg-teal-600 hover:bg-teal-700 rounded transition"
                   title="Save"
                 >
-                  <Check size={16} />
+                  <Check size={14} className="sm:w-4 sm:h-4" />
                 </button>
                 <button
                   onClick={() => {
                     setEditID(null);
                     setEditVal("");
                   }}
-                  className="p-1.5 text-gray-600 bg-gray-200 hover:bg-gray-300 rounded transition"
+                  className="p-1 sm:p-1.5 text-gray-600 bg-gray-200 hover:bg-gray-300 rounded transition"
                   title="Cancel"
                 >
-                  <X size={16} />
+                  <X size={14} className="sm:w-4 sm:h-4" />
                 </button>
               </div>
             </div>
@@ -212,13 +212,13 @@ const Todo = () => {
 
       {/* Footer */}
       {todo.length > 0 && (
-        <div className="mt-6 text-sm text-gray-500">
+        <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-500">
           {remainingTasks} {remainingTasks === 1 ? "task" : "tasks"} remaining
         </div>
       )}
 
       {todo.length === 0 && (
-        <div className="text-center py-12 text-gray-400">
+        <div className="text-center py-8 sm:py-12 text-gray-400 text-sm">
           <p>No tasks yet. Add one to get started!</p>
         </div>
       )}
