@@ -6,24 +6,24 @@ const About = () => {
   const [openItem, setOpenItem] = useState(null);
 
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full px-3 sm:px-4 py-4 sm:py-6">
       {/* ---- TOP HEADING SECTION ---- */}
-      <div className="max-w-xl mx-auto mb-6 flex items-start justify-between">
+      <div className="max-w-xl mx-auto mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-800">About</h1>
-          <p className="text-sm text-gray-500 -mt-1">
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">About</h1>
+          <p className="text-xs sm:text-sm text-gray-500 -mt-1">
             Learn more about the features of Focus Zone
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-gray-600 text-sm">
-          <Lightbulb size={18} className="text-teal-500" />
+        <div className="flex items-center gap-2 text-gray-600 text-xs sm:text-sm">
+          <Lightbulb size={16} className="sm:w-[18px] sm:h-[18px] text-teal-500" />
           <span>Click an item to expand & read more</span>
         </div>
       </div>
 
       {/* ---- ACCORDION SECTION ---- */}
-      <div className="max-w-xl mx-auto space-y-3">
+      <div className="max-w-xl mx-auto space-y-2 sm:space-y-3">
         {accordianData.map((data) => {
           const isOpen = data.id === openItem;
 
@@ -39,21 +39,21 @@ const About = () => {
               "
             >
               {/* HEADER */}
-              <div className="flex items-center justify-between px-4 py-3">
-                <h2 className="text-gray-800 font-medium text-sm">
+              <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3">
+                <h2 className="text-gray-800 font-medium text-xs sm:text-sm pr-2">
                   {data.heading}
                 </h2>
 
                 {isOpen ? (
-                  <ChevronUp size={18} className="text-teal-500" />
+                  <ChevronUp size={16} className="sm:w-[18px] sm:h-[18px] text-teal-500 shrink-0" />
                 ) : (
-                  <ChevronDown size={18} className="text-gray-500" />
+                  <ChevronDown size={16} className="sm:w-[18px] sm:h-[18px] text-gray-500 shrink-0" />
                 )}
               </div>
 
               {/* CONTENT */}
               {isOpen && (
-                <div className="px-4 pb-4 text-sm text-gray-600 space-y-3">
+                <div className="px-3 sm:px-4 pb-3 sm:pb-4 text-xs sm:text-sm text-gray-600 space-y-2 sm:space-y-3">
                   <p>{data.text}</p>
 
                   {data.links && (
@@ -66,8 +66,8 @@ const About = () => {
                           rel="noopener noreferrer"
                           className="
                             text-teal-600 hover:text-teal-800 
-                            underline underline-offset-2
-                          "
+                            underline underline-offset-2 wrap-break-word
+                           "
                         >
                           {link.label}
                         </a>
