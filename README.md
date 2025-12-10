@@ -90,7 +90,7 @@ This helps you save time, stay focused, and maintain momentum throughout the day
 | Build Tool         | **Vite**                    |
 | Linting            | **ESLint**                  |
 | Styling            | CSS                         |
-| Deployment         | Any static hosting provider |
+| Deployment         | Vercel                      |
 
 ---
 
