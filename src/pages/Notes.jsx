@@ -73,24 +73,24 @@ const Notes = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4 sm:p-6">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-1">Notes</h1>
-      <p className="text-gray-600 text-xs sm:text-base mb-4 sm:mb-6">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-1 dark:text-gray-300">Notes</h1>
+      <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-base mb-4 sm:mb-6">
         Capture ideas that surface while you're in the zone.
       </p>
 
       <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
-        <div className="w-full md:w-1/3 bg-emerald-50 border border-emerald-100 p-3 sm:p-4 rounded-xl shadow-sm">
+        <div className="w-full md:w-1/3 bg-emerald-50 dark:bg-gray-500 border border-emerald-100 dark:border-gray-400 p-3 sm:p-4 rounded-xl shadow-sm">
           <div className="flex justify-between items-center mb-3 sm:mb-4">
-            <h2 className="font-semibold text-gray-700 text-sm sm:text-base">All Notes</h2>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">All Notes</h2>
             <button
               onClick={() => {
                 setSelectedNoteID(null);
                 setInputText("");
                 setInputTitle("");
               }}
-              className="px-3 py-1 bg-teal-600 hover:bg-emerald-700 text-white rounded-lg text-xs sm:text-sm"
+              className="px-3 py-1 bg-teal-600 hover:bg-emerald-700 dark:bg-teal-700 text-white rounded-lg text-xs sm:text-sm"
             >
-              Add
+              New Note
             </button>
           </div>
 
@@ -102,20 +102,20 @@ const Notes = () => {
                   className={`p-3 sm:p-4 rounded-lg mb-2 sm:mb-3 cursor-pointer border transition relative
                   ${
                     note.id === selectedNoteId
-                      ? "bg-white border-emerald-400 shadow-sm"
-                      : "bg-white hover:bg-gray-50 border-gray-200"
+                      ? "bg-white dark:bg-gray-400 border-emerald-400 shadow-sm"
+                      : "bg-white dark:bg-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 border-gray-200 dark:border-gray-400"
                   }
                 `}
                   onClick={() => showNotes(note.id)}
                 >
-                  <h1 className="font-semibold text-gray-800 text-sm sm:text-base pr-6">{note.title}</h1>
-                  <p className="text-gray-500 text-xs sm:text-sm mt-1 truncate">
+                  <h1 className="font-semibold text-gray-800 dark:text-gray-100 text-sm sm:text-base pr-6">{note.title}</h1>
+                  <p className="text-gray-500 dark:text-gray-100 text-xs sm:text-sm mt-1 truncate">
                     {note.text}
                   </p>
 
                   <Trash2
                     size={18}
-                    className="absolute right-2 top-2 sm:right-3 sm:top-3 sm:w-5 sm:h-5 text-gray-400 hover:text-red-600"
+                    className="absolute right-2 top-2 sm:right-3 sm:top-3 sm:w-5 sm:h-5 text-gray-400 dark:text-gray-200 hover:text-red-600 self-center"
                     onClick={(e) => {
                       e.stopPropagation();
                       deleteNote(note.id);
@@ -127,18 +127,18 @@ const Notes = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-2/3 bg-emerald-50 border border-emerald-100 p-3 sm:p-4 rounded-xl shadow-sm">
+        <div className="w-full md:w-2/3 bg-emerald-50 dark:bg-gray-500 border border-emerald-100 dark:border-gray-400 p-3 sm:p-4 rounded-xl shadow-sm">
           <div className="flex gap-2 sm:gap-3 mb-3">
             <input
               type="text"
               placeholder="Note title..."
               value={inputTitle}
               onChange={(e) => setInputTitle(e.target.value)}
-              className="flex-1 bg-white p-2 sm:p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm sm:text-base"
+              className="flex-1 bg-white dark:bg-gray-300 dark:text-gray-600 p-2 sm:p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm sm:text-base"
             />
             <button
               onClick={saveNote}
-              className="px-3 sm:px-4 bg-teal-600 hover:bg-emerald-700 text-white rounded-lg text-xs sm:text-sm"
+              className="px-3 sm:px-4 bg-teal-600 dark:bg-teal-700 hover:bg-emerald-700 text-white rounded-lg text-xs sm:text-sm"
             >
               Save
             </button>
@@ -148,7 +148,7 @@ const Notes = () => {
             placeholder="Start writing your note..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            className="bg-white p-2 sm:p-3 rounded-lg w-full h-48 sm:h-56 border border-gray-300 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm sm:text-base"
+            className="bg-white dark:bg-gray-300 dark:text-gray-600 p-2 sm:p-3 rounded-lg w-full h-48 sm:h-56 border border-gray-300 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm sm:text-base"
           ></textarea>
         </div>
       </div>

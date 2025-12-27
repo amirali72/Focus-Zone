@@ -74,8 +74,8 @@ const Todo = () => {
     <div className="max-w-2xl mx-auto p-4 sm:p-8">
       {/* Header */}
       <div className="mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Todo</h1>
-        <p className="text-gray-600 text-xs sm:text-sm">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-300 mb-2">Todo</h1>
+        <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
           Plan your focus blocks with a lightweight task list.
         </p>
       </div>
@@ -88,11 +88,11 @@ const Todo = () => {
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addTodo()}
-          className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-xs sm:text-sm"
+          className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 dark:border-gray-400 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-xs sm:text-sm"
         />
         <button
           onClick={addTodo}
-          className="px-4 sm:px-6 py-2 sm:py-2.5 bg-teal-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-teal-700 transition"
+          className="px-4 sm:px-6 py-2 sm:py-2.5 bg-teal-600 dark:bg-teal-700 text-white dark:text-gray-300 text-xs sm:text-sm font-medium rounded-lg hover:bg-teal-700 dark:hover:bg-teal-800 transition"
         >
           Add
         </button>
@@ -104,8 +104,8 @@ const Todo = () => {
           onClick={() => setFilter("all")}
           className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition ${
             filter === "all"
-              ? "bg-teal-600 text-white"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              ? "bg-teal-600 dark:bg-teal-700 text-white dark:text-gray-300"
+              : "bg-gray-100 dark:bg-gray-500 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
           }`}
         >
           All
@@ -114,8 +114,8 @@ const Todo = () => {
           onClick={() => setFilter("active")}
           className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition ${
             filter === "active"
-              ? "bg-teal-600 text-white"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              ? "bg-teal-600 dark:bg-teal-700 text-white dark:text-gray-300"
+              : "bg-gray-100 dark:bg-gray-500 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
           }`}
         >
           Active
@@ -124,8 +124,8 @@ const Todo = () => {
           onClick={() => setFilter("completed")}
           className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition ${
             filter === "completed"
-              ? "bg-teal-600 text-white"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              ? "bg-teal-600 dark:bg-teal-700 text-white dark:text-gray-300"
+              : "bg-gray-100 dark:bg-gray-500 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700" 
           }`}
         >
           Completed
@@ -138,16 +138,16 @@ const Todo = () => {
           return todos.id !== editID ? (
             <div
               key={todos.id}
-              className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition group"
+              className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-white dark:bg-gray-500 border border-gray-200 dark:border-gray-400 rounded-lg hover:shadow-sm transition group"
             >
               <input
                 type="checkbox"
                 checked={todos.completed}
                 onChange={() => completeTodo(todos.id)}
-                className="w-4 h-4 sm:w-5 sm:h-5 rounded border-gray-300 text-teal-600 focus:ring-2 focus:ring-teal-500 cursor-pointer shrink-0"
+                className="w-4 h-4 sm:w-5 sm:h-5 rounded border-gray-300 text-teal-600 dark:text-teal-700 focus:ring-2 focus:ring-teal-500 cursor-pointer shrink-0"
               />
               <span
-                className={`flex-1 text-sm sm:text-base text-gray-800 wrap-break-word ${
+                className={`flex-1 text-sm sm:text-base text-gray-800 dark:text-gray-300 dark:font-semibold wrap-break-word ${
                   todos.completed ? "line-through text-gray-400" : ""
                 }`}
               >
@@ -159,14 +159,14 @@ const Todo = () => {
                     setEditID(todos.id);
                     setEditVal(todos.text);
                   }}
-                  className="p-1 sm:p-1.5 text-gray-500 hover:text-teal-600 hover:bg-teal-50 rounded transition"
+                  className="p-1 sm:p-1.5 text-gray-500 dark:text-gray-300 hover:text-teal-600 hover:bg-teal-50 rounded transition"
                   title="Edit"
                 >
                   <Pencil size={14} className="sm:w-4 sm:h-4" />
                 </button>
                 <button
                   onClick={() => deleteTodo(todos.id)}
-                  className="p-1 sm:p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition"
+                  className="p-1 sm:p-1.5 text-gray-500 dark:text-gray-300 hover:text-red-600 hover:bg-red-50 rounded transition"
                   title="Delete"
                 >
                   <Trash2 size={14} className="sm:w-4 sm:h-4" />
@@ -212,7 +212,7 @@ const Todo = () => {
 
       {/* Footer */}
       {todo.length > 0 && (
-        <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-500">
+        <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-500 dark:text-gray-300">
           {remainingTasks} {remainingTasks === 1 ? "task" : "tasks"} remaining
         </div>
       )}

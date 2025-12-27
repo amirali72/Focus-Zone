@@ -10,13 +10,13 @@ const About = () => {
       {/* ---- TOP HEADING SECTION ---- */}
       <div className="max-w-xl mx-auto mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:justify-between gap-3">
         <div>
-          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">About</h1>
-          <p className="text-xs sm:text-sm text-gray-500 -mt-1">
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-300">About</h1>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300 -mt-1">
             Learn more about the features of Focus Zone
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-gray-600 text-xs sm:text-sm">
+        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
           <Lightbulb size={16} className="sm:w-[18px] sm:h-[18px] text-teal-500" />
           <span>Click an item to expand & read more</span>
         </div>
@@ -32,7 +32,7 @@ const About = () => {
               key={data.id}
               onClick={() => setOpenItem(isOpen ? null : data.id)}
               className="
-                bg-white border rounded-lg shadow-sm 
+                bg-white dark:bg-gray-400 border rounded-lg shadow-sm 
                 transition-all duration-200 cursor-pointer
                 border-teal-100 hover:border-teal-300 
                 hover:shadow-md
@@ -45,15 +45,15 @@ const About = () => {
                 </h2>
 
                 {isOpen ? (
-                  <ChevronUp size={16} className="sm:w-[18px] sm:h-[18px] text-teal-500 shrink-0" />
+                  <ChevronUp size={16} className="sm:w-[18px] sm:h-[18px] text-teal-500 dark:text-teal-700 shrink-0" />
                 ) : (
-                  <ChevronDown size={16} className="sm:w-[18px] sm:h-[18px] text-gray-500 shrink-0" />
+                  <ChevronDown size={16} className="sm:w-[18px] sm:h-[18px] text-gray-500 dark:text-teal-700 shrink-0" />
                 )}
               </div>
 
               {/* CONTENT */}
               {isOpen && (
-                <div className="px-3 sm:px-4 pb-3 sm:pb-4 text-xs sm:text-sm text-gray-600 space-y-2 sm:space-y-3">
+                <div className="px-3 sm:px-4 pb-3 sm:pb-4 text-xs sm:text-sm text-gray-600 dark:text-gray-700 space-y-2 sm:space-y-3">
                   <p>{data.text}</p>
 
                   {data.links && (

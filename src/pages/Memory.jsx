@@ -76,16 +76,16 @@ const Memory = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:space-x-20">
         <div className="mb-3">
-          <h1 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">
+          <h1 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-300 mb-1">
             Memory Game
           </h1>
-          <p className="text-gray-600 text-xs">
+          <p className="text-gray-600 dark:text-gray-300 text-xs">
             Match all the pairs to win the game
           </p>
         </div>
         {!hasWon && (
           <div className="sm:ml-9 p-3 sm:p-4 rounded-lg text-center sm:text-left">
-            <p className="text-xs sm:text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
               💡 Click on cards to flip them and find matching pairs
             </p>
           </div>
@@ -93,7 +93,7 @@ const Memory = () => {
       </div>
 
       {/* Game Stats and Controls */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-4 px-4 sm:px-6 py-3 bg-teal-50 rounded-xl">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-4 px-4 sm:px-6 py-3 bg-teal-50 dark:bg-gray-400 rounded-xl">
         <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto">
           <div>
             <p className="text-xs text-gray-600 mb-1">Moves</p>
@@ -121,7 +121,7 @@ const Memory = () => {
 
       {/* Win Message */}
       {hasWon && (
-        <div className="mb-6 p-4 sm:p-6 bg-linear-to-r from-teal-500 to-emerald-500 rounded-xl text-white text-center">
+        <div className="mb-6 p-4 sm:p-6 bg-linear-to-r from-teal-500 dark:from-teal-700 to-emerald-500 dark:to-emerald-700 rounded-xl text-white text-center">
           <h2 className="text-xl sm:text-2xl font-bold mb-2">🎉 Congratulations!</h2>
           <p className="text-base sm:text-lg">You won in {moves} moves!</p>
           <button
@@ -142,8 +142,8 @@ const Memory = () => {
               onClick={() => handleOnClick(cards.id)}
               className={`aspect-square flex items-center justify-center text-2xl sm:text-4xl rounded-lg sm:rounded-xl cursor-pointer transition-all duration-300 w-8/12 sm:h-20 ${
                 cards.isFlipped
-                  ? "bg-white border-2 border-teal-500 shadow-md scale-105"
-                  : "bg-teal-100 hover:bg-teal-200 border-2 border-teal-300"
+                  ? "bg-white dark:bg-gray-200 border-2 border-teal-500 shadow-md scale-105"
+                  : "bg-teal-100 dark:bg-gray-300 hover:bg-teal-200 border-2 border-teal-300 dark:border-teal-700"
               }`}
             >
               <span 
