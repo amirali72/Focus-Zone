@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { MapPin, Search, Wind, CloudRain, Thermometer, Droplets } from "lucide-react";
+import {
+  MapPin,
+  Search,
+  Wind,
+  CloudRain,
+  Thermometer,
+  Droplets,
+} from "lucide-react";
 
 const Weather = () => {
   const [inputVal, setInputVal] = useState("");
   const [weather, setWeather] = useState();
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
   function showLocation(position) {
@@ -23,12 +30,14 @@ const Weather = () => {
       const data = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${inputVal}&aqi=no`
       );
+      if (!data.ok) {
+        setError(true);
+      }
       const json = await data.json();
       setWeather(json);
       setLoading(false);
       setInputVal("");
     } catch (err) {
-      setError("Error while fetching the data");
       setLoading(false);
       setInputVal("");
     }
@@ -54,13 +63,14 @@ const Weather = () => {
 
   return (
     <div className="bg-linear-to-br from-green-100 dark:from-gray-600 to-teal-200 dark:to-gray-600 flex items-center justify-center p-3 sm:p-4 rounded-xl">
-
       <div className="w-full max-w-md bg-white/85 dark:bg-gray-500 backdrop-blur-md shadow-lg rounded-xl p-3 sm:p-4 space-y-3 sm:space-y-4">
-
         {/* Input Section */}
         <div className="flex items-center gap-2">
           <div className="relative w-full">
-            <Search className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+            <Search
+              className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              size={16}
+            />
 
             <input
               type="text"
@@ -89,7 +99,7 @@ const Weather = () => {
           <h1 className="text-center text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
             Search weather of any city
           </h1>
-        ) : (
+        ) : !error ? (
           <>
             {/* Location Info */}
             <div className="text-center">
@@ -119,27 +129,34 @@ const Weather = () => {
 
             {/* Details */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3 text-gray-700 pt-2 sm:pt-3">
-
               <div className="flex flex-col items-center bg-white dark:bg-gray-300 rounded-lg p-2 sm:p-3 shadow">
                 <CloudRain size={20} className="sm:w-6 sm:h-6 text-teal-500" />
-                <p className="font-medium text-xs sm:text-sm">{weather?.current?.precip_mm} mm</p>
+                <p className="font-medium text-xs sm:text-sm">
+                  {weather?.current?.precip_mm} mm
+                </p>
                 <span className="text-xs text-gray-500">Rain</span>
               </div>
 
               <div className="flex flex-col items-center bg-white dark:bg-gray-300 rounded-lg p-2 sm:p-3 shadow">
                 <Wind size={20} className="sm:w-6 sm:h-6 text-teal-500" />
-                <p className="font-medium text-xs sm:text-sm">{weather?.current?.wind_kph} kph</p>
+                <p className="font-medium text-xs sm:text-sm">
+                  {weather?.current?.wind_kph} kph
+                </p>
                 <span className="text-xs text-gray-500">Wind</span>
               </div>
 
               <div className="flex flex-col items-center bg-white dark:bg-gray-300 rounded-lg p-2 sm:p-3 shadow">
                 <Droplets size={20} className="sm:w-6 sm:h-6 text-teal-500" />
-                <p className="font-medium text-xs sm:text-sm">{weather?.current?.humidity}%</p>
+                <p className="font-medium text-xs sm:text-sm">
+                  {weather?.current?.humidity}%
+                </p>
                 <span className="text-xs text-gray-500">Humidity</span>
               </div>
             </div>
           </>
-        )}
+        ) : <h1 className="text-center text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
+            Please write the city name correctly
+          </h1>}
       </div>
     </div>
   );
